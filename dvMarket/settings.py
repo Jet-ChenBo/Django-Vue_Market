@@ -83,7 +83,7 @@ DATABASES = {
         'PASSWORD': 'mysql',
         'HOST': '127.0.0.1',
         'PORT': 3306,
-        'OPTIONS': {'init_command': 'SET storage_engine=INNODB;'}  # 第三方登录需要
+        'OPTIONS': {'init_command': 'SET default_storage_engine=INNODB;'}  # 第三方登录需要
     }
 }
 
