@@ -4,6 +4,7 @@ from rest_framework import mixins
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 
 from .models import Goods
 from .filters import GoodsFilter
@@ -23,5 +24,7 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = GoodsSerializer  # 指定序列化类
     pagination_class = GoodsPagination  # 指定分页类
 
-    filter_backends = (DjangoFilterBackend,)  # 过滤器
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)  # 过滤器
     filter_class = GoodsFilter
+    search_fields = ('name', 'goods_brief', 'goods_desc')  # 搜索
+    ordering_fields = ('sold_num', 'add_time')  # 排序
