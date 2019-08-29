@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'user_operation.apps.UserOperationConfig',
     'crispy_forms',
     'xadmin',
+    'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +135,10 @@ USE_TZ = False  # 用本地时间
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = "/media/"
+MEDAI_ROOT = os.path.join(BASE_DIR, 'media')
+
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10  # 每页多少个数据
+}
