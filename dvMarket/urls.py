@@ -21,6 +21,7 @@ from django.views.static import serve
 from rest_framework.documentation import include_docs_urls
 from goods.views import GoodsListViewSet, CategoryViewSet
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views
 
 router = DefaultRouter()
 router.register(r'goods', GoodsListViewSet, base_name="goods")
@@ -38,4 +39,5 @@ urlpatterns = [
     url(r'docs/', include_docs_urls(title="dvMarkt_cb")),  # 生成DRF文档
 
     url(r'^', include(router.urls)),
+    url(r'^login/', views.obtain_auth_token),  # token，会返回一个唯一的token值
 ]
