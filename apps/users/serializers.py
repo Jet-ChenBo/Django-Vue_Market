@@ -62,7 +62,7 @@ class UserRegSerializer(serializers.ModelSerializer):
 
     password = serializers.CharField(
         style={'input_type': 'password'},help_text="密码", label="密码", write_only=True,
-    )
+    )   # 设置write_only就不会返回
 
     # def create(self, validated_data):
     #     user = super(UserRegSerializer, self).create(validated_data=validated_data)
