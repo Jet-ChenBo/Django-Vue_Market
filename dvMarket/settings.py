@@ -49,9 +49,13 @@ INSTALLED_APPS = [
     'xadmin',
     'rest_framework',
     'django_filters',
+    'corsheaders',  # 跨域
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True  # 跨域
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -139,6 +143,3 @@ STATIC_URL = '/static/'
 MEDIA_URL = "/media/"
 MEDAI_ROOT = os.path.join(BASE_DIR, 'media')
 
-REST_FRAMEWORK = {
-    'PAGE_SIZE': 10  # 每页多少个数据
-}

@@ -19,22 +19,23 @@ import xadmin
 from dvMarket.settings import MEDAI_ROOT
 from django.views.static import serve
 from rest_framework.documentation import include_docs_urls
-from goods.views import GoodsListViewSet
+from goods.views import GoodsListViewSet, CategoryViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register(r'goods', GoodsListViewSet)
-
+router.register(r'goods', GoodsListViewSet, base_name="goods")
+router.register(r'categorys', CategoryViewSet, base_name="categorys")
 
 goods_list = GoodsListViewSet.as_view({
-    'get': 'list',  # 将get请求绑定到list方法
+    "get" : "list",  # 将get请求绑定到list方法
 })
+
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),  # 后台
     url(r'^api-auth/', include('rest_framework.urls')),  # DRF的登录和注销
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDAI_ROOT}),  # 图片
-    url(r'docs/$', include_docs_urls(title="dvMarkt_cb")),  # 生成DRF文档
+    url(r'docs/', include_docs_urls(title="dvMarkt_cb")),  # 生成DRF文档
 
-    url(r'^', include(router.urls))
+    url(r'^', include(router.urls)),
 ]
